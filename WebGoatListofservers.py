@@ -5,7 +5,7 @@ import re
 import json
 
 WebGoatIP = '127.0.0.1:8080'
-Request = 'http://{}/WebGoat/SqlInjection/servers?column={}' #FIXME
+URL = 'http://{}/WebGoat/SqlInjection/servers?column={}' #FIXME
 JSESSIONID = '166548C2EC5DEFB28CF677503338BE4F' #FIXME
 
 regEx = re.compile('\* [0-9]+\-[0-9]+')
@@ -28,7 +28,7 @@ def success():
     response = res.text
 
 def getRequest(sortBy, debug=True):
-    req = Request.format(WebGoatIP, sortBy)
+    req = URL.format(WebGoatIP, sortBy)
     if debug:
         print('Debug: sending request: ', req)
     res = requests.get(req, headers=httpHeaders)
@@ -81,7 +81,7 @@ def postRequest():
             }
 
     for num in range(100):
-        res = requests.post(Request, data=formData, headers=httpHeaders)
+        res = requests.post(URL, data=formData, headers=httpHeaders)
         response = res.text
         s = regEx.search(response)
         print(response)
