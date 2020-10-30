@@ -24,12 +24,11 @@ httpHeaders = {
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'Accept-Language': 'en-US,en;q=0.5',
-        'Referer': '{WebGoatIP}/WebGoat/start.mvc',
+        'Referer': f'{WebGoatIP}/WebGoat/start.mvc',
         'X-Requested-With': 'XMLHttpRequest',
         'Cookie': f'JSESSIONID={JSESSIONID}',
         'Connection': 'keep-alive',
     }
-
 
 # Runt this for to find the ip of webgoat-prd server
 def bruteForce():
