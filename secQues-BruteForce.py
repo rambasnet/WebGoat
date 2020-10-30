@@ -3,6 +3,9 @@
 """
 Bruteforce script to guess user's secret question for WebGoat 8.1 
 Broken Authentication - Password reset - #4
+
+Use requests library - https://requests.readthedocs.io/en/master/
+
 """
 
 import requests
