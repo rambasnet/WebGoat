@@ -5,6 +5,7 @@ import re
 import json
 
 WebGoatIP = '127.0.0.1:8080'
+# Type getServers(ip) on Browser console to get the URL to the XHR GET request
 # http://localhost:8080/WebGoat/SqlInjectionMitigations/servers?column=ip
 URL = 'http://{}/WebGoat/SqlInjectionMitigations/servers?column={}' #FIXME
 JSESSIONID = 'cEIWCjUyeUcjIiAqAII1wzraXfUe3qFMiK_aWzvr' #FIXME
